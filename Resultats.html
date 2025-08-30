@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultats de la cerca</title>
+    <link rel="stylesheet" href="Resultats.css">
+    <script src="https://kit.fontawesome.com/b3e2c34a6d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Estudia Batxillerat</div>
+
+    <input type="checkbox" id="toggle" aria-label="Obrir o tancar menú">
+    <label for="toggle">
+        <img src="Imatges/menu.svg" alt="Obrir menú">
+    </label>
+    <nav class="navigation" aria-label="Menú principal">
+        <ul>
+            <li><a href="Inici.html">Inici</a></li>
+            <li>
+                <a href="Inici.html">Tècniques i Recursos d'estudi</a>
+                <ul>
+                    <li><a href="Resums.html">Resums</a></li>
+                    <li><a href="Fitxes d'estudi.html">Fitxes Estudi</a></li>
+                    <li><a href="Exàmens Selectivitat.html">Exàmens Selectivitat <span>16</span></a></li>
+                    <li><a href="Tècniques Memorístiques.html">Tècniques Memorístiques</a></li>
+                    <li><a href="Vídeos Educatius.html">Vídeos Educatius</a></li>
+                    <li><a href="#">Sintetitzadors Informació</a>
+                        <ul>
+                            <li><a href="Esquemes.html">Esquemes<span>12</span></a></li>
+                            <li><a href="Mapes Conceptuals.html">Mapes Conceptuals<span>8</span></a></li>
+                            <li><a href="Mapes Mentals.html">Mapes Mentals<span>5</span></a></li>
+                            <li><a href="Infografies.html">Infografies <span>7</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Tècniques de relaxació</a>
+                <ul>
+                    <li><a href="#">Respiració</a></li>
+                    <li><a href="#">Muscular progressiva de Jacobson</a></li>
+                    <li><a href="#">Meditació</a></li>
+                    <li><a href="#">Ioga <span>12</span></a></li>
+                    <li><a href="#">Activitats Relaxants <span>12</span></a></li>
+                    <li><a href="#">Relaxació de Benson</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Hàbits d'estudi</a>
+                <ul>
+                    <li><a href="#">Objectiu clar</a></li>
+                    <li><a href="#">Atenció a classe</a></li>
+                    <li><a href="#">Establir un horari</a></li>
+                    <li><a href="#">Descans</a></li>
+                    <li><a href="#">Preguntar Dubtes</a></li>
+                    <li><a href="#">Dieta Equilibrada i Activitat Física</a></li>
+                </ul>
+            </li>
+            <li><a href="Preguntes Freqüents.html">Preguntes Freqüents</a></li>
+            <li><a href="Contacte.html">Contacte</a></li>              
+        </ul>
+    </nav> 
+    <form class="form" action="Resultats.html" method="get" onsubmit="guardarBusqueda()">
+        <input type="text" id="searchInput" name="q" list="opcions" placeholder="Buscar..." required>
+        <datalist id="opcions">
+            <option value="Inici">
+            <option value="Resums">
+            <option value="Fitxes Estudi">
+            <option value="Exercicis">
+            <option value="Tècniques Memorístiques">
+            <option value="Vídeos Educatius">
+            <option value="Contacte">
+        </datalist>
+        <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+</header>
+<main style="padding: 120px 20px;">
+    <h1>Resultats de la cerca</h1>
+    <div id="searchResults" style="margin-top:20px;"></div>
+</main>
+<footer>
+    <div class="social">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="nav-section">
+        <nav>
+            <a href="Inici.html">Inici</a>
+            <a href="Resums.html">Resums</a>
+            <a href="Fitxes d'estudi.html">Fitxes Estudi</a>
+            <a href="Exàmens Selectivitat.html">Exàmens Selectivitat</a>
+            <a href="Tècniques Memorístiques.html">Tècniques Memorístiques</a>
+            <a href="Vídeos Educatius.html">Vídeos Educatius</a>
+            <a href="Contacte.html">Contacte</a>
+        </nav>
+    </div>
+    <div class="copy">
+        Copyright 2025 - <i class="fa-solid fa-registered"></i>
+    </div>
+</footer>
+
+<script>
+const pages = [
+    { title: "Inici", url: "Inici.html", keywords: "Inici home portada principal" },
+    { title: "Resums", url: "Resums.html", keywords: "Resums resumen apuntes" },
+    { title: "Fitxes d'Estudi", url: "Fitxes d'estudi.html", keywords: "Fitxes fichas estudio" },
+    { title: "Exercicis", url: "Exercicis.html", keywords: "Exercicis ejercicios práctica" },
+    { title: "Tècniques Memorístiques", url: "Tècniques Memorístiques.html", keywords: "memoria memorístiques técniques" },
+    { title: "Vídeos Educatius", url: "Vídeos Educatius.html", keywords: "Vídeos educatius aprendizaje" },
+    { title: "Contacte", url: "Contacte.html", keywords: "Contacte email formulari" }
+];
+
+// Guardar búsqueda en localStorage
+function guardarBusqueda() {
+    let query = document.getElementById("searchInput").value;
+    localStorage.setItem("searchQuery", query);
+}
+
+// Mostrar resultados al cargar la página
+window.addEventListener("DOMContentLoaded", function() {
+    const query = (localStorage.getItem("searchQuery") || "").toLowerCase();
+    const container = document.getElementById("searchResults");
+    container.innerHTML = "";
+
+    if (query.length > 0) {
+        const results = pages.filter(page =>
+            page.title.toLowerCase().includes(query) ||
+            page.keywords.toLowerCase().includes(query)
+        );
+
+        if (results.length > 0) {
+            results.forEach(page => {
+                const div = document.createElement("div");
+                div.innerHTML = `<a href="${page.url}" class="result-item">${page.title}</a>`;
+                container.appendChild(div);
+            });
+        } else {
+            container.innerHTML = "<p>No s'han trobat resultats.</p>";
+        }
+    } else {
+        container.innerHTML = "<p>Escriu una paraula al cercador per veure resultats.</p>";
+    }
+});
+</script>
+
+</body>
+</html>
